@@ -3,6 +3,13 @@
 {% load static %}
 
 
+
+<form action="" method="post">
+    {{form}}
+</form>
 {% block content_part  %}
-      
+    <h3>To Do app </h3>
+        {% for task in tasks  %}
+    <p class="">{{ task }}</p>
+{% endfor %}
 {% endblock content_part  %}
