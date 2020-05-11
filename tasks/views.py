@@ -23,6 +23,26 @@ def index(request):
 
 
 def update(request,pk):
-    tasks = task.objects.get(id=pk)
-    
-    return render(request,'tasks/update.html')
+    taskes = task.objects.get(id=pk)
+
+    form = taskForms(instance=taskes)
+    if request.method == 'POST':
+        form = taskForms(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+
+    context = {'form':form}
+    return render(request,'tasks/update.html',context)
+
+
+
+def deletetask(request,pk):
+    item = task.objects.get(id=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect(index)
+  
+
+    context = {'item':item}
+    return render(request, 'tasks/delete.html',context)

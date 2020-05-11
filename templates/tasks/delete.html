@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "tasks/base.html" %}
+
+
+{% block content_part %}
+<p>Are you sure you want to Delete <b>{{item}}?</b>  </p>
+  <a href="{% url 'tasks:index' %}">Cancel</a>
+
+  <form action="/" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Confirm">
+  </form>
+{% endblock content_part %}
